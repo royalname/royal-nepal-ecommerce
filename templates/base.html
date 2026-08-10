@@ -1,113 +1,182 @@
+{% load static %}
+
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+```
+<meta charset="UTF-8">
 
-<title>Royal Nepal</title>
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-<!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+<title>
+    {% block title %}
+    Royal Nepal
+    {% endblock %}
+</title>
 
-{% load static %}
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<!-- Bootstrap -->
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+    rel="stylesheet">
 
 <!-- Bootstrap Icons -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
+<!-- Royal Nepal CSS -->
+<link
+    rel="stylesheet"
+    href="{% static 'css/style.css' %}">
+```
 
 </head>
 
 <body>
 
-<!-- ================= NAVBAR ================= -->
+<!-- =====================================================
+     NAVBAR
+     ===================================================== -->
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow fixed-top">
+<nav class="navbar navbar-expand-lg royal-navbar">
 
+```
 <div class="container">
 
-    <a class="navbar-brand fw-bold" href="{% url 'home' %}">
-        <i class="bi bi-shop"></i>
-        Royal Nepal
+
+    <!-- BRAND -->
+
+    <a class="navbar-brand royal-brand"
+       href="{% url 'home' %}">
+
+        <span class="brand-icon">
+            <i class="bi bi-shop"></i>
+        </span>
+
+        <span>
+            Royal Nepal
+        </span>
+
     </a>
 
-    <button class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav">
+
+    <!-- MOBILE BUTTON -->
+
+    <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation">
 
         <span class="navbar-toggler-icon"></span>
 
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
 
-        <!-- Left Menu -->
+    <!-- NAVIGATION -->
 
-        <ul class="navbar-nav me-auto">
-
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'home' %}">
-                    Home
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'products' %}">
-                    Products
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'about' %}">
-                    About
-                </a>
-            </li>
-
-            
-
-        </ul>
+    <div class="collapse navbar-collapse"
+         id="navbarNav">
 
 
-        <!-- Search Bar -->
+        <!-- LEFT MENU -->
 
-        <form class="d-flex me-3"
-              method="GET"
-              action="{% url 'products' %}">
-
-            <input
-                class="form-control me-2"
-                type="search"
-                name="q"
-                placeholder="Search products..."
-                value="{{ request.GET.q }}">
-
-            <button
-                class="btn btn-light"
-                type="submit">
-
-                <i class="bi bi-search"></i>
-
-            </button>
-
-        </form>
-
-
-        <!-- Right Menu -->
-
-        <ul class="navbar-nav">
-
-            <!-- Cart -->
+        <ul class="navbar-nav me-auto royal-nav-links">
 
             <li class="nav-item">
 
                 <a class="nav-link"
+                   href="{% url 'home' %}">
+
+                    <i class="bi bi-house-door"></i>
+                    Home
+
+                </a>
+
+            </li>
+
+
+            <li class="nav-item">
+
+                <a class="nav-link"
+                   href="{% url 'products' %}">
+
+                    <i class="bi bi-grid"></i>
+                    Products
+
+                </a>
+
+            </li>
+
+
+            <li class="nav-item">
+
+                <a class="nav-link"
+                   href="{% url 'about' %}">
+
+                    <i class="bi bi-info-circle"></i>
+                    About
+
+                </a>
+
+            </li>
+
+        </ul>
+
+
+        <!-- SEARCH -->
+
+        <form
+            class="royal-search"
+            method="GET"
+            action="{% url 'products' %}">
+
+            <div class="search-wrapper">
+
+                <i class="bi bi-search search-icon"></i>
+
+                <input
+                    type="search"
+                    name="q"
+                    placeholder="Search products..."
+                    value="{{ request.GET.q }}"
+                    aria-label="Search products">
+
+                <button type="submit">
+
+                    Search
+
+                </button>
+
+            </div>
+
+        </form>
+
+
+        <!-- RIGHT MENU -->
+
+        <ul class="navbar-nav royal-right-links">
+
+
+            <!-- CART -->
+
+            <li class="nav-item">
+
+                <a class="nav-link nav-cart"
                    href="{% url 'cart' %}">
 
                     <i class="bi bi-cart3"></i>
-                    Cart
+
+                    <span>
+                        Cart
+                    </span>
 
                 </a>
 
@@ -116,7 +185,8 @@
 
             {% if user.is_authenticated %}
 
-            <!-- Profile -->
+
+            <!-- PROFILE -->
 
             <li class="nav-item">
 
@@ -124,14 +194,17 @@
                    href="{% url 'profile' %}">
 
                     <i class="bi bi-person-circle"></i>
-                    {{ user.username }}
+
+                    <span>
+                        {{ user.username }}
+                    </span>
 
                 </a>
 
             </li>
 
 
-            <!-- My Orders -->
+            <!-- MY ORDERS -->
 
             <li class="nav-item">
 
@@ -139,22 +212,28 @@
                    href="{% url 'my_orders' %}">
 
                     <i class="bi bi-bag-check"></i>
-                    My Orders
+
+                    <span>
+                        Orders
+                    </span>
 
                 </a>
 
             </li>
 
 
-            <!-- Logout -->
+            <!-- LOGOUT -->
 
             <li class="nav-item">
 
-                <a class="nav-link"
+                <a class="nav-link nav-logout"
                    href="{% url 'logout' %}">
 
                     <i class="bi bi-box-arrow-right"></i>
-                    Logout
+
+                    <span>
+                        Logout
+                    </span>
 
                 </a>
 
@@ -163,7 +242,8 @@
 
             {% else %}
 
-            <!-- Login -->
+
+            <!-- LOGIN -->
 
             <li class="nav-item">
 
@@ -171,26 +251,33 @@
                    href="{% url 'login' %}">
 
                     <i class="bi bi-box-arrow-in-right"></i>
-                    Login
+
+                    <span>
+                        Login
+                    </span>
 
                 </a>
 
             </li>
 
 
-            <!-- Register -->
+            <!-- REGISTER -->
 
             <li class="nav-item">
 
-                <a class="nav-link"
+                <a class="nav-link register-link"
                    href="{% url 'register' %}">
 
                     <i class="bi bi-person-plus"></i>
-                    Register
+
+                    <span>
+                        Register
+                    </span>
 
                 </a>
 
             </li>
+
 
             {% endif %}
 
@@ -199,66 +286,191 @@
     </div>
 
 </div>
-
+```
 
 </nav>
 
-<!-- ================= MAIN CONTENT ================= -->
+<!-- =====================================================
+     MESSAGES
+     ===================================================== -->
 
-<div class="container mt-5 pt-4">
-{% if messages %}
+<div class="container royal-messages">
 
-    {% for message in messages %}
+```
+{% for message in messages %}
 
-        <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+    <div
+        class="alert alert-{{ message.tags }} alert-dismissible fade show royal-alert"
+        role="alert">
 
-            {{ message }}
+        <i class="bi bi-info-circle me-2"></i>
 
-            <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="alert">
-            </button>
+        {{ message }}
+
+        <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close">
+        </button>
+
+    </div>
+
+{% endfor %}
+```
+
+</div>
+
+<!-- =====================================================
+     MAIN CONTENT
+     ===================================================== -->
+
+<main>
+
+```
+<div class="container">
+
+    {% block content %}
+    {% endblock %}
+
+</div>
+```
+
+</main>
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<footer class="royal-footer">
+
+```
+<div class="container">
+
+    <div class="row g-4">
+
+        <!-- Brand -->
+
+        <div class="col-md-5">
+
+            <h4 class="footer-brand">
+                <i class="bi bi-shop me-2"></i>
+                Royal Nepal
+            </h4>
+
+            <p class="footer-description">
+                Your trusted online shopping destination for
+                quality products at affordable prices.
+            </p>
+
+            <div class="footer-social">
+
+                <a href="#" aria-label="Facebook">
+                    <i class="bi bi-facebook"></i>
+                </a>
+
+                <a href="#" aria-label="Instagram">
+                    <i class="bi bi-instagram"></i>
+                </a>
+
+                <a href="#" aria-label="Twitter">
+                    <i class="bi bi-twitter-x"></i>
+                </a>
+
+            </div>
 
         </div>
 
-    {% endfor %}
 
-{% endif %}
+        <!-- Quick Links -->
+
+        <div class="col-6 col-md-3">
+
+            <h6 class="footer-title">
+                Quick Links
+            </h6>
+
+            <a href="{% url 'home' %}">
+                Home
+            </a>
+
+            <a href="{% url 'products' %}">
+                Products
+            </a>
+
+            <a href="{% url 'about' %}">
+                About Us
+            </a>
+
+        </div>
 
 
-{% block content %}
-{% endblock %}
+        <!-- Customer -->
+
+        <div class="col-6 col-md-4">
+
+            <h6 class="footer-title">
+                Customer
+            </h6>
+
+            <a href="{% url 'cart' %}">
+                Shopping Cart
+            </a>
+
+            {% if user.is_authenticated %}
+
+                <a href="{% url 'my_orders' %}">
+                    My Orders
+                </a>
+
+                <a href="{% url 'profile' %}">
+                    My Profile
+                </a>
+
+            {% else %}
+
+                <a href="{% url 'login' %}">
+                    Login
+                </a>
+
+                <a href="{% url 'register' %}">
+                    Create Account
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <hr class="footer-divider">
+
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 Royal Nepal. All Rights Reserved.
+        </span>
+
+        <span>
+            Made with <i class="bi bi-heart-fill"></i> in Nepal
+        </span>
+
+    </div>
 
 </div>
-
-<!-- ================= FOOTER ================= -->
-
-<footer class="bg-dark text-white mt-5">
-
-<div class="container text-center py-4">
-
-    <h5>
-        Royal Nepal
-    </h5>
-
-    <p>
-        Your trusted online shopping destination.
-    </p>
-
-    <hr>
-
-    <p class="mb-0">
-        © 2026 Royal Nepal. All Rights Reserved.
-    </p>
-
-</div>
+```
 
 </footer>
 
-<!-- Bootstrap JS -->
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap JavaScript -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js">
+</script>
 
 </body>
+
 </html>
