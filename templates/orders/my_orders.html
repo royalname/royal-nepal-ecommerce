@@ -2,139 +2,284 @@
 
 {% block content %}
 
-<div class="container mt-5">
+<div class="container my-orders-page">
 
-    <h2 class="mb-4">
-        My Orders
-    </h2>
+```
+<!-- Page Header -->
 
-    {% if orders %}
+<div class="orders-header">
 
-    <table class="table table-bordered table-striped table-hover">
+    <div>
 
-        <thead class="table-dark">
+        <span class="section-label">
+            ROYAL NEPAL
+        </span>
 
-            <tr>
-                <th>Order ID</th>
-                <th>Date</th>
-                <th>Total Amount</th>
-                <th>Payment Method</th>
-                <th>Invoice</th>
-                <th>Payment Status</th>
-                <th>Order Status</th>
-            </tr>
+        <h1>
+            My Orders
+        </h1>
 
-        </thead>
+        <p>
+            Track your orders and payment status.
+        </p>
 
-        <tbody>
+    </div>
 
-        {% for order in orders %}
+    <a
+        href="{% url 'products' %}"
+        class="btn orders-shop-btn">
 
-        <tr>
+        <i class="bi bi-bag me-2"></i>
+        Continue Shopping
 
-            <td>#{{ order.id }}</td>
-
-            <td>{{ order.created_at }}</td>
-
-            <td>Rs. {{ order.total_amount }}</td>
-
-            <td>{{ order.payment_method }}</td>
-
-            <td>
-    <a href="{% url 'invoice' order.id %}"
-       class="btn btn-outline-primary btn-sm">
-        <i class="bi bi-file-earmark-text"></i>
-        View Invoice
     </a>
-</td>
 
-            <!-- Payment Status -->
-            <td>
+</div>
 
-                {% if order.payment_status == "Pending Verification" %}
 
-                    <span class="badge bg-warning text-dark">
-                        Pending Verification
-                    </span>
+{% if orders %}
 
-                {% elif order.payment_status == "Verified" %}
+<!-- Orders -->
 
-                    <span class="badge bg-success">
-                        Verified
-                    </span>
+<div class="orders-list">
 
-                {% elif order.payment_status == "Rejected" %}
+    {% for order in orders %}
 
-                    <span class="badge bg-danger">
-                        Rejected
-                    </span>
+    <div class="order-card">
 
-                {% else %}
 
-                    <span class="badge bg-secondary">
-                        {{ order.payment_status }}
-                    </span>
+        <!-- Order Top -->
 
-                {% endif %}
+        <div class="order-card-header">
 
-            </td>
+            <div>
 
-            <!-- Order Status -->
-            <td>
+                <span class="order-label">
+                    ORDER
+                </span>
 
-                {% if order.status == "Pending" %}
+                <h4>
+                    #{{ order.id }}
+                </h4>
 
-                    <span class="badge bg-warning text-dark">
-                        Pending
-                    </span>
+            </div>
 
-                {% elif order.status == "Confirmed" %}
+            <div class="order-date">
 
-                    <span class="badge bg-primary">
-                        Confirmed
-                    </span>
+                <i class="bi bi-calendar3"></i>
 
-                {% elif order.status == "Shipped" %}
+                {{ order.created_at }}
 
-                    <span class="badge bg-info text-dark">
-                        Shipped
-                    </span>
-
-                {% elif order.status == "Delivered" %}
-
-                    <span class="badge bg-success">
-                        Delivered
-                    </span>
-
-                {% else %}
-
-                    <span class="badge bg-secondary">
-                        {{ order.status }}
-                    </span>
-
-                {% endif %}
-
-            </td>
-
-        </tr>
-
-        {% endfor %}
-
-        </tbody>
-
-    </table>
-
-    {% else %}
-
-        <div class="alert alert-info">
-
-            <h5>No Orders Found</h5>
-
-            <p>You haven't placed any orders yet.</p>
+            </div>
 
         </div>
 
-    {% endif %}
+
+        <!-- Order Information -->
+
+        <div class="order-info-grid">
+
+
+            <div class="order-info-item">
+
+                <span>
+                    Total Amount
+                </span>
+
+                <strong class="order-price">
+                    Rs. {{ order.total_amount }}
+                </strong>
+
+            </div>
+
+
+            <div class="order-info-item">
+
+                <span>
+                    Payment Method
+                </span>
+
+                <strong>
+
+                    {% if order.payment_method %}
+
+                        <i class="bi bi-wallet2 me-1"></i>
+                        {{ order.payment_method }}
+
+                    {% else %}
+
+                        Not Selected
+
+                    {% endif %}
+
+                </strong>
+
+            </div>
+
+
+            <div class="order-info-item">
+
+                <span>
+                    Payment Status
+                </span>
+
+                <strong>
+
+                    {% if order.payment_status == "Pending Verification" %}
+
+                        <span class="order-status payment-pending">
+                            <i class="bi bi-hourglass-split"></i>
+                            Pending Verification
+                        </span>
+
+                    {% elif order.payment_status == "Verified" %}
+
+                        <span class="order-status payment-verified">
+                            <i class="bi bi-check-circle"></i>
+                            Verified
+                        </span>
+
+                    {% elif order.payment_status == "Rejected" %}
+
+                        <span class="order-status payment-rejected">
+                            <i class="bi bi-x-circle"></i>
+                            Rejected
+                        </span>
+
+                    {% else %}
+
+                        <span class="order-status payment-other">
+                            {{ order.payment_status }}
+                        </span>
+
+                    {% endif %}
+
+                </strong>
+
+            </div>
+
+
+            <div class="order-info-item">
+
+                <span>
+                    Order Status
+                </span>
+
+                <strong>
+
+                    {% if order.status == "Pending" %}
+
+                        <span class="order-status order-pending">
+                            <i class="bi bi-clock"></i>
+                            Pending
+                        </span>
+
+                    {% elif order.status == "Confirmed" %}
+
+                        <span class="order-status order-confirmed">
+                            <i class="bi bi-check2-circle"></i>
+                            Confirmed
+                        </span>
+
+                    {% elif order.status == "Shipped" %}
+
+                        <span class="order-status order-shipped">
+                            <i class="bi bi-truck"></i>
+                            Shipped
+                        </span>
+
+                    {% elif order.status == "Delivered" %}
+
+                        <span class="order-status order-delivered">
+                            <i class="bi bi-box-seam"></i>
+                            Delivered
+                        </span>
+
+                    {% else %}
+
+                        <span class="order-status order-other">
+                            {{ order.status }}
+                        </span>
+
+                    {% endif %}
+
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- Bottom -->
+
+        <div class="order-card-footer">
+
+            <span class="order-footer-text">
+
+                <i class="bi bi-shield-check"></i>
+
+                Royal Nepal Order
+
+            </span>
+
+
+            <a
+                href="{% url 'invoice' order.id %}"
+                class="btn order-invoice-btn">
+
+                <i class="bi bi-file-earmark-text me-2"></i>
+
+                View Invoice
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+
+{% else %}
+
+
+<!-- Empty Orders -->
+
+<div class="empty-orders">
+
+    <div class="empty-orders-icon">
+
+        <i class="bi bi-bag-x"></i>
+
+    </div>
+
+    <h3>
+        No Orders Yet
+    </h3>
+
+    <p>
+        You haven't placed any orders yet.
+        Start shopping and your orders will appear here.
+    </p>
+
+    <a
+        href="{% url 'products' %}"
+        class="btn orders-shop-btn">
+
+        <i class="bi bi-bag me-2"></i>
+
+        Start Shopping
+
+    </a>
+
+</div>
+
+
+{% endif %}
+```
 
 </div>
 

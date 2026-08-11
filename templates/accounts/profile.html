@@ -2,150 +2,284 @@
 
 {% block content %}
 
-<div class="row justify-content-center">
+<div class="profile-page">
 
 ```
-<div class="col-md-7 col-lg-6">
+<div class="profile-card">
 
-    <div class="card shadow border-0">
+    <!-- Profile Header -->
 
-        <div class="card-header bg-primary text-white text-center py-3">
+    <div class="profile-header">
 
-            <h4 class="mb-0">
-                <i class="bi bi-person-circle"></i>
-                My Profile
-            </h4>
+        <div class="profile-avatar">
+
+            <i class="bi bi-person"></i>
 
         </div>
 
-        <div class="card-body p-4">
+        <div>
 
-            <div class="text-center mb-4">
+            <span class="profile-label">
+                ROYAL NEPAL ACCOUNT
+            </span>
 
-                <i class="bi bi-person-circle display-1 text-primary"></i>
+            <h2>
+                My Profile
+            </h2>
 
-                <h4 class="mt-2">
-                    {{ user.username }}
-                </h4>
+            <p>
+                Manage your personal information and account.
+            </p>
 
-            </div>
+        </div>
 
-            <form method="POST">
+    </div>
 
-                {% csrf_token %}
 
-                <div class="mb-3">
+    <!-- Profile Form -->
 
-                    <label class="form-label fw-bold">
-                        Username
-                    </label>
+    <div class="profile-body">
 
-                    <input type="text"
-                           class="form-control"
-                           value="{{ user.username }}"
-                           readonly>
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <!-- Username -->
+
+            <div class="profile-field">
+
+                <label>
+                    Username
+                </label>
+
+                <div class="profile-input-wrapper">
+
+                    <i class="bi bi-person"></i>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        value="{{ user.username }}"
+                        readonly>
+
+                    <span class="field-locked">
+                        <i class="bi bi-lock-fill"></i>
+                    </span>
 
                 </div>
 
-                <div class="row">
+                <small>
+                    Username cannot be changed.
+                </small>
 
-                    <div class="col-md-6 mb-3">
+            </div>
 
-                        <label class="form-label fw-bold">
+
+            <!-- Name -->
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <div class="profile-field">
+
+                        <label>
                             First Name
                         </label>
 
-                        <input type="text"
-                               name="first_name"
-                               class="form-control"
-                               value="{{ user.first_name }}">
+                        <div class="profile-input-wrapper">
+
+                            <i class="bi bi-person"></i>
+
+                            <input
+                                type="text"
+                                name="first_name"
+                                class="form-control"
+                                value="{{ user.first_name }}">
+
+                        </div>
 
                     </div>
 
-                    <div class="col-md-6 mb-3">
+                </div>
 
-                        <label class="form-label fw-bold">
+
+                <div class="col-md-6">
+
+                    <div class="profile-field">
+
+                        <label>
                             Last Name
                         </label>
 
-                        <input type="text"
-                               name="last_name"
-                               class="form-control"
-                               value="{{ user.last_name }}">
+                        <div class="profile-input-wrapper">
+
+                            <i class="bi bi-person"></i>
+
+                            <input
+                                type="text"
+                                name="last_name"
+                                class="form-control"
+                                value="{{ user.last_name }}">
+
+                        </div>
 
                     </div>
 
                 </div>
 
-                <div class="mb-3">
+            </div>
 
-                    <label class="form-label fw-bold">
-                        Email
-                    </label>
 
-                    <input type="email"
-                           name="email"
-                           class="form-control"
-                           value="{{ user.email }}">
+            <!-- Email -->
 
-                </div>
+            <div class="profile-field">
 
-                <div class="mb-3">
+                <label>
+                    Email Address
+                </label>
 
-                    <label class="form-label fw-bold">
-                        Date Joined
-                    </label>
+                <div class="profile-input-wrapper">
 
-                    <input type="text"
-                           class="form-control"
-                           value="{{ user.date_joined|date:'F d, Y' }}"
-                           readonly>
+                    <i class="bi bi-envelope"></i>
+
+                    <input
+                        type="email"
+                        name="email"
+                        class="form-control"
+                        value="{{ user.email }}">
 
                 </div>
-
-                <button type="submit"
-                        class="btn btn-success w-100">
-
-                    <i class="bi bi-check-circle"></i>
-                    Update Profile
-
-                </button>
-
-            </form>
-
-            <div class="d-grid mt-3">
-
-    <a href="{% url 'change_password' %}"
-       class="btn btn-outline-danger">
-
-        <i class="bi bi-key"></i>
-        Change Password
-
-    </a>
-
-</div>
-
-            <hr>
-
-            <div class="d-grid gap-2">
-
-                <a href="{% url 'my_orders' %}"
-                   class="btn btn-primary">
-
-                    <i class="bi bi-bag-check"></i>
-                    My Orders
-
-                </a>
-
-                <a href="{% url 'products' %}"
-                   class="btn btn-outline-secondary">
-
-                    <i class="bi bi-shop"></i>
-                    Continue Shopping
-
-                </a>
 
             </div>
+
+
+            <!-- Date Joined -->
+
+            <div class="profile-field">
+
+                <label>
+                    Member Since
+                </label>
+
+                <div class="profile-input-wrapper">
+
+                    <i class="bi bi-calendar3"></i>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        value="{{ user.date_joined|date:'F d, Y' }}"
+                        readonly>
+
+                    <span class="field-locked">
+                        <i class="bi bi-lock-fill"></i>
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Update -->
+
+            <button
+                type="submit"
+                class="btn profile-update-btn">
+
+                <i class="bi bi-check-circle me-2"></i>
+
+                Update Profile
+
+            </button>
+
+        </form>
+
+
+        <!-- Account Actions -->
+
+        <div class="profile-actions">
+
+            <a
+                href="{% url 'change_password' %}"
+                class="profile-action password-action">
+
+                <div class="profile-action-icon">
+
+                    <i class="bi bi-key"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        Change Password
+                    </strong>
+
+                    <small>
+                        Update your account password
+                    </small>
+
+                </div>
+
+                <i class="bi bi-chevron-right action-arrow"></i>
+
+            </a>
+
+
+            <a
+                href="{% url 'my_orders' %}"
+                class="profile-action">
+
+                <div class="profile-action-icon">
+
+                    <i class="bi bi-bag-check"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        My Orders
+                    </strong>
+
+                    <small>
+                        View your previous orders
+                    </small>
+
+                </div>
+
+                <i class="bi bi-chevron-right action-arrow"></i>
+
+            </a>
+
+
+            <a
+                href="{% url 'products' %}"
+                class="profile-action">
+
+                <div class="profile-action-icon">
+
+                    <i class="bi bi-shop"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        Continue Shopping
+                    </strong>
+
+                    <small>
+                        Browse our products
+                    </small>
+
+                </div>
+
+                <i class="bi bi-chevron-right action-arrow"></i>
+
+            </a>
 
         </div>
 

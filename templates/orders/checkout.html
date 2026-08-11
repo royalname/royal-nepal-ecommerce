@@ -2,135 +2,285 @@
 
 {% block content %}
 
-<div class="container mt-5">
+<div class="container checkout-page">
 
-    <h2 class="mb-4">
+```
+<!-- Header -->
+
+<div class="checkout-header">
+
+    <span class="section-label">
+        ROYAL NEPAL
+    </span>
+
+    <h1>
+        <i class="bi bi-bag-check"></i>
         Checkout
-    </h2>
+    </h1>
 
-    <form method="POST" action="{% url 'place_order' %}">
+    <p>
+        Enter your delivery details and review your order.
+    </p>
+
+</div>
+
+
+<form method="POST" action="{% url 'place_order' %}">
+
     {% csrf_token %}
 
-        <div class="row">
 
-            <div class="col-md-6">
+    <div class="row g-4">
 
-                <label class="form-label">
-                    Full Name
-                </label>
 
-                <input
-    type="text"
-    name="full_name"
-    class="form-control"
-    value="{{ request.user.get_full_name }}"
-    required>
+        <!-- Customer Details -->
+
+        <div class="col-lg-7">
+
+            <div class="checkout-card">
+
+                <div class="checkout-card-header">
+
+                    <div class="checkout-icon">
+
+                        <i class="bi bi-person"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Delivery Information
+                        </h4>
+
+                        <p>
+                            Where should we deliver your order?
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="row g-3">
+
+
+                    <!-- Full Name -->
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+                            Full Name
+                        </label>
+
+                        <div class="checkout-input">
+
+                            <i class="bi bi-person"></i>
+
+                            <input
+                                type="text"
+                                name="full_name"
+                                value="{{ request.user.get_full_name }}"
+                                placeholder="Enter your full name"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Email -->
+
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+                            Email Address
+                        </label>
+
+                        <div class="checkout-input">
+
+                            <i class="bi bi-envelope"></i>
+
+                            <input
+                                type="email"
+                                name="email"
+                                value="{{ request.user.email }}"
+                                placeholder="Enter your email"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Phone -->
+
+                    <div class="col-12">
+
+                        <label class="form-label">
+                            Phone Number
+                        </label>
+
+                        <div class="checkout-input">
+
+                            <i class="bi bi-telephone"></i>
+
+                            <input
+                                type="tel"
+                                name="phone"
+                                placeholder="98XXXXXXXX"
+                                pattern="[0-9]{10}"
+                                maxlength="10"
+                                minlength="10"
+                                required>
+
+                        </div>
+
+                        <small class="form-text">
+                            Enter your 10-digit phone number.
+                        </small>
+
+                    </div>
+
+
+                    <!-- Address -->
+
+                    <div class="col-12">
+
+                        <label class="form-label">
+                            Delivery Address
+                        </label>
+
+                        <div class="checkout-input checkout-textarea">
+
+                            <i class="bi bi-geo-alt"></i>
+
+                            <textarea
+                                name="address"
+                                rows="4"
+                                placeholder="Enter your complete delivery address"
+                                required></textarea>
+
+                        </div>
+
+                    </div>
+
+                </div>
 
             </div>
 
-            <div class="col-md-6">
+        </div>
 
-                <label class="form-label">
-                    Email
-                </label>
 
-                <input
-    type="email"
-    name="email"
-    class="form-control"
-    value="{{ request.user.email }}"
-    required>
+        <!-- Order Summary -->
+
+        <div class="col-lg-5">
+
+            <div class="checkout-summary">
+
+                <div class="checkout-summary-header">
+
+                    <h4>
+                        Order Summary
+                    </h4>
+
+                    <span>
+                        {{ items|length }} item{{ items|length|pluralize }}
+                    </span>
+
+                </div>
+
+
+                <div class="checkout-items">
+
+                    {% for item in items %}
+
+                    <div class="checkout-item">
+
+                        <div class="checkout-item-info">
+
+                            {% if item.product.image %}
+
+                            <img
+                                src="{{ item.product.image.url }}"
+                                alt="{{ item.product.name }}">
+
+                            {% else %}
+
+                            <img
+                                src="https://placehold.co/70x70"
+                                alt="{{ item.product.name }}">
+
+                            {% endif %}
+
+                            <div>
+
+                                <strong>
+                                    {{ item.product.name }}
+                                </strong>
+
+                                <small>
+                                    Qty: {{ item.quantity }}
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                        <strong>
+                            Rs. {{ item.subtotal }}
+                        </strong>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+                <hr>
+
+
+                <div class="checkout-total">
+
+                    <span>
+                        Grand Total
+                    </span>
+
+                    <strong>
+                        Rs. {{ total }}
+                    </strong>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="place-order-btn">
+
+                    <i class="bi bi-check2-circle"></i>
+
+                    Place Order
+
+                </button>
+
+
+                <div class="checkout-security">
+
+                    <i class="bi bi-shield-check"></i>
+
+                    Your information is secure and protected.
+
+                </div>
 
             </div>
 
         </div>
 
-        <div class="mt-3">
+    </div>
 
-            <label class="form-label">
-                Phone Number
-            </label>
-
- <input
-    type="tel"
-    name="phone"
-    class="form-control"
-    placeholder="98XXXXXXXX"
-    pattern="[0-9]{10}"
-    maxlength="10"
-    minlength="10"
-    required>
-
-        </div>
-
-        <div class="mt-3">
-
-            <label class="form-label">
-                Delivery Address
-            </label>
-
-            <textarea
-    name="address"
-    class="form-control"
-    rows="4"
-    placeholder="Enter delivery address"
-    required></textarea>
-
-        </div>
-
-        <hr>
-
-        <h4>
-
-            Order Summary
-
-        </h4>
-
-        <table class="table">
-
-            <tr>
-
-                <th>Product</th>
-
-                <th>Qty</th>
-
-                <th>Subtotal</th>
-
-            </tr>
-
-            {% for item in items %}
-
-            <tr>
-
-                <td>{{ item.product.name }}</td>
-
-                <td>{{ item.quantity }}</td>
-
-                <td>Rs. {{ item.subtotal }}</td>
-
-            </tr>
-
-            {% endfor %}
-
-        </table>
-
-        <div class="text-end">
-
-            <h3>
-
-                Grand Total: Rs. {{ total }}
-
-            </h3>
-
-        </div>
-
-        <button class="btn btn-success btn-lg mt-3">
-
-            Place Order
-
-        </button>
-
-    </form>
+</form>
+```
 
 </div>
 

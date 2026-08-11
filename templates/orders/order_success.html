@@ -2,34 +2,198 @@
 
 {% block content %}
 
-<div class="container mt-5 text-center">
+<div class="container order-success-page">
 
-    <div class="card shadow p-5">
+    <div class="order-success-card">
 
-        <h1 class="text-success">
-            🎉 Order Placed Successfully
+        <!-- Success Icon -->
+
+        <div class="success-icon">
+            <i class="bi bi-check-lg"></i>
+        </div>
+
+        <span class="success-label">
+            PAYMENT SUBMITTED
+        </span>
+
+        <h1>
+            Order Placed Successfully!
         </h1>
 
-        <hr>
+        <p class="success-message">
 
-        <h4>
-            Order ID:
-            #{{ order.id }}
-        </h4>
+            Your payment screenshot has been
+            <strong>uploaded successfully</strong>.
 
-        <h4>
-            Total Amount:
-            Rs. {{ order.total_amount }}
-        </h4>
+            Your payment is now waiting for verification.
 
-        <p class="mt-3">
-            Thank you for shopping with
-            <strong>Royal Nepal</strong>.
         </p>
 
-        <a href="/products/" class="btn btn-primary mt-3">
-            Continue Shopping
-        </a>
+
+        <!-- Order Details -->
+
+        <div class="success-order-details">
+
+            <div class="success-detail">
+
+                <span>
+                    Order ID
+                </span>
+
+                <strong>
+                    #{{ order.id }}
+                </strong>
+
+            </div>
+
+
+            <div class="success-detail">
+
+                <span>
+                    Total Amount
+                </span>
+
+                <strong class="success-price">
+                    Rs. {{ order.total_amount }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- Payment Confirmation -->
+
+        <div class="payment-confirmation-box">
+
+            <div class="payment-confirmation-icon">
+
+                <i class="bi bi-file-earmark-check"></i>
+
+            </div>
+
+            <div>
+
+                <strong>
+                    Payment Screenshot Uploaded
+                </strong>
+
+                <p>
+                    Your payment screenshot has been successfully
+                    received by Royal Nepal.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Uploaded Screenshot -->
+
+        {% if payment_screenshot %}
+
+        <div class="uploaded-screenshot-section">
+
+            <h4>
+                <i class="bi bi-image"></i>
+                Your Uploaded Screenshot
+            </h4>
+
+            <p>
+                This is the payment screenshot you submitted.
+            </p>
+
+            <div class="uploaded-screenshot-wrapper">
+
+                <img
+                    src="{{ payment_screenshot.url }}"
+                    alt="Uploaded Payment Screenshot"
+                    class="uploaded-payment-image">
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+
+        <!-- Payment Status -->
+
+        <div class="payment-status-box">
+
+            <i class="bi bi-hourglass-split"></i>
+
+            <div>
+
+                <strong>
+                    Payment Status
+                </strong>
+
+                <span>
+                    {{ order.payment_status }}
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- What's Next -->
+
+        <div class="success-info">
+
+            <i class="bi bi-box-seam"></i>
+
+            <div>
+
+                <strong>
+                    What's next?
+                </strong>
+
+                <p>
+                    Our team will verify your payment.
+                    You can check your order status from
+                    <strong>My Orders</strong>.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Buttons -->
+
+        <div class="success-actions">
+
+            <a
+                href="{% url 'products' %}"
+                class="btn success-shopping-btn">
+
+                <i class="bi bi-bag me-2"></i>
+                Continue Shopping
+
+            </a>
+
+
+            <a
+                href="{% url 'my_orders' %}"
+                class="btn success-orders-btn">
+
+                <i class="bi bi-receipt me-2"></i>
+                View My Orders
+
+            </a>
+
+        </div>
+
+
+        <p class="success-footer">
+
+            <i class="bi bi-shield-check"></i>
+
+            Thank you for choosing Royal Nepal.
+
+        </p>
 
     </div>
 

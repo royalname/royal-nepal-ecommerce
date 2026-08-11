@@ -2,101 +2,327 @@
 
 {% block content %}
 
-<div class="container mt-5">
+<div class="container payment-page">
 
-    <div class="card shadow p-4">
+```
+<!-- Payment Header -->
 
-        <h2 class="text-center mb-4">
-            Complete Your Payment
-        </h2>
+<div class="payment-header text-center">
 
-        <h5>Order #{{ order.id }}</h5>
+    <span class="section-label">
+        ROYAL NEPAL
+    </span>
 
-        <h4 class="text-success">
-            Total: Rs. {{ order.total_amount }}
-        </h4>
+    <h1>
+        Complete Your Payment
+    </h1>
 
-        <hr>
+    <p>
+        Choose your preferred payment method and upload your payment proof.
+    </p>
 
-        <form method="POST" enctype="multipart/form-data">
+</div>
 
-            {% csrf_token %}
 
-            <h5>Select Payment Method</h5>
+<div class="row justify-content-center">
 
-            <div class="form-check">
-                <input class="form-check-input"
-                       type="radio"
-                       name="payment_method"
-                       id="esewa"
-                       value="eSewa"
-                       required>
+    <div class="col-lg-8">
 
-                <label class="form-check-label" for="esewa">
-                    eSewa
-                </label>
-            </div>
+        <div class="payment-card">
 
-            <div class="form-check mb-4">
-                <input class="form-check-input"
-                       type="radio"
-                       name="payment_method"
-                       id="khalti"
-                       value="Khalti">
 
-                <label class="form-check-label" for="khalti">
-                    Khalti
-                </label>
-            </div>
+            <!-- Order Information -->
 
-            <!-- eSewa QR -->
-            <div id="esewaQR" class="text-center" style="display:none;">
+            <div class="payment-order-info">
 
-                <h4 class="text-success">
-                    Scan with eSewa
-                </h4>
+                <div>
 
-                <img src="/static/images/esewa.jpg"
-                     class="img-fluid border rounded"
-                     style="max-width:300px;">
+                    <span>
+                        Order Number
+                    </span>
 
-            </div>
+                    <strong>
+                        #{{ order.id }}
+                    </strong>
 
-            <!-- Khalti QR -->
-            <div id="khaltiQR" class="text-center" style="display:none;">
+                </div>
 
-                <h4 class="text-primary">
-                    Scan with Khalti
-                </h4>
+                <div class="payment-total">
 
-                <img src="/static/images/khalti.jpg"
-                     class="img-fluid border rounded"
-                     style="max-width:300px;">
+                    <span>
+                        Total Amount
+                    </span>
+
+                    <strong>
+                        Rs. {{ order.total_amount }}
+                    </strong>
+
+                </div>
 
             </div>
+
 
             <hr>
 
-            <h5>Upload Payment Screenshot</h5>
 
-            <input
-                type="file"
-                name="payment_screenshot"
-                class="form-control"
-                accept="image/*"
-                required>
+            <form method="POST" enctype="multipart/form-data">
 
-            <br>
+                {% csrf_token %}
 
-            <button class="btn btn-success btn-lg w-100">
 
-                Submit Payment
+                <!-- Payment Method -->
+
+                <div class="payment-section">
+
+                    <h4>
+                        <i class="bi bi-wallet2"></i>
+                        Select Payment Method
+                    </h4>
+
+                    <p class="payment-help">
+                        Select one of the payment methods below.
+                    </p>
+
+
+                    <div class="payment-methods">
+
+
+                        <!-- eSewa -->
+
+                        <label class="payment-method-option" for="esewa">
+
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                name="payment_method"
+                                id="esewa"
+                                value="eSewa"
+                                required>
+
+                            <span class="payment-method-content">
+
+                                <span class="payment-method-icon esewa-icon">
+                                    <i class="bi bi-phone"></i>
+                                </span>
+
+                                <span>
+
+                                    <strong>
+                                        eSewa
+                                    </strong>
+
+                                    <small>
+                                        Pay using eSewa
+                                    </small>
+
+                                </span>
+
+                            </span>
+
+                            <i class="bi bi-check-circle-fill payment-selected-icon"></i>
+
+                        </label>
+
+
+                        <!-- Khalti -->
+
+                        <label class="payment-method-option" for="khalti">
+
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                name="payment_method"
+                                id="khalti"
+                                value="Khalti">
+
+                            <span class="payment-method-content">
+
+                                <span class="payment-method-icon khalti-icon">
+                                    <i class="bi bi-wallet2"></i>
+                                </span>
+
+                                <span>
+
+                                    <strong>
+                                        Khalti
+                                    </strong>
+
+                                    <small>
+                                        Pay using Khalti
+                                    </small>
+
+                                </span>
+
+                            </span>
+
+                            <i class="bi bi-check-circle-fill payment-selected-icon"></i>
+
+                        </label>
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- eSewa QR -->
+
+                <div
+                    id="esewaQR"
+                    class="payment-qr-box"
+                    style="display:none;">
+
+                    <h4>
+                        <i class="bi bi-qr-code-scan"></i>
+                        Scan with eSewa
+                    </h4>
+
+                    <p>
+                        Scan the QR code using your eSewa app.
+                    </p>
+
+                    <img
+                        src="/static/images/esewa.jpg"
+                        class="payment-qr-image"
+                        alt="eSewa QR Code">
+
+                </div>
+
+
+                <!-- Khalti QR -->
+
+                <div
+                    id="khaltiQR"
+                    class="payment-qr-box khalti-qr-box"
+                    style="display:none;">
+
+                    <h4>
+                        <i class="bi bi-qr-code-scan"></i>
+                        Scan with Khalti
+                    </h4>
+
+                    <p>
+                        Scan the QR code using your Khalti app.
+                    </p>
+
+                    <img
+                        src="/static/images/khalti.jpg"
+                        class="payment-qr-image"
+                        alt="Khalti QR Code">
+
+                </div>
+
+
+                <hr>
+
+
+                <!-- Screenshot -->
+
+                <div class="payment-section">
+
+    <h4>
+        <i class="bi bi-image"></i>
+        Upload Payment Screenshot
+    </h4>
+
+    <p class="payment-help">
+        Upload your payment screenshot and review it before submitting.
+    </p>
+
+
+    <label class="payment-upload">
+
+        <i class="bi bi-cloud-arrow-up"></i>
+
+        <span>
+            Choose Payment Screenshot
+        </span>
+
+        <small>
+            JPG, JPEG, PNG or other image files
+        </small>
+
+        <input
+            type="file"
+            name="payment_screenshot"
+            id="paymentScreenshot"
+            accept="image/*"
+            required>
+
+    </label>
+
+
+    <!-- Screenshot Preview -->
+
+    <div
+        id="screenshotPreview"
+        class="screenshot-preview"
+        style="display: none;">
+
+        <div class="screenshot-preview-header">
+
+            <strong>
+                <i class="bi bi-eye"></i>
+                Review Your Screenshot
+            </strong>
+
+            <button
+                type="button"
+                id="removeScreenshot"
+                class="btn btn-sm btn-outline-danger">
+
+                <i class="bi bi-trash"></i>
+                Remove
 
             </button>
 
-        </form>
+        </div>
+
+
+        <div class="screenshot-preview-image-wrapper">
+
+            <img
+                id="previewImage"
+                src=""
+                alt="Payment Screenshot Preview"
+                class="screenshot-preview-image">
+
+        </div>
 
     </div>
+
+</div>
+
+
+                <!-- Submit -->
+
+                <button
+                    type="submit"
+                    class="payment-submit-btn">
+
+                    <i class="bi bi-check-circle"></i>
+
+                    Submit Payment
+
+                </button>
+
+
+                <div class="payment-security">
+
+                    <i class="bi bi-shield-check"></i>
+
+                    Your payment information is securely submitted for verification.
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+```
 
 </div>
 
@@ -110,6 +336,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const esewaQR = document.getElementById("esewaQR");
     const khaltiQR = document.getElementById("khaltiQR");
 
+
     esewa.addEventListener("change", function () {
 
         esewaQR.style.display = "block";
@@ -117,10 +344,62 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
+
     khalti.addEventListener("change", function () {
 
         esewaQR.style.display = "none";
         khaltiQR.style.display = "block";
+
+    });
+
+
+    /* Screenshot Preview */
+
+    const screenshotInput =
+        document.getElementById("paymentScreenshot");
+
+    const screenshotPreview =
+        document.getElementById("screenshotPreview");
+
+    const previewImage =
+        document.getElementById("previewImage");
+
+    const removeScreenshot =
+        document.getElementById("removeScreenshot");
+
+
+    screenshotInput.addEventListener("change", function () {
+
+        const file = this.files[0];
+
+        if (file) {
+
+            const reader = new FileReader();
+
+            reader.onload = function (event) {
+
+                previewImage.src = event.target.result;
+
+                screenshotPreview.style.display = "block";
+
+            };
+
+            reader.readAsDataURL(file);
+
+        }
+
+    });
+
+
+    /* Remove Screenshot */
+
+    removeScreenshot.addEventListener("click", function () {
+
+        screenshotInput.value = "";
+
+        previewImage.src = "";
+
+        screenshotPreview.style.display = "none";
 
     });
 

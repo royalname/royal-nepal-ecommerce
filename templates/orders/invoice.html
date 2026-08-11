@@ -2,135 +2,234 @@
 
 {% block content %}
 
-<div class="container mt-5">
+<div class="container invoice-page">
 
-    <div class="card shadow p-4" id="invoice">
+```
+<div class="invoice-card" id="invoice">
 
-        <div class="text-center mb-4">
+    <!-- Invoice Header -->
 
-            <h2>Royal Nepal</h2>
+    <div class="invoice-header">
 
-            <h5>Order Invoice</h5>
+        <div>
 
-            <hr>
+            <div class="invoice-brand">
+                <i class="bi bi-shop"></i>
+                Royal Nepal
+            </div>
+
+            <p>
+                Your trusted online shopping destination.
+            </p>
 
         </div>
 
-        <div class="row">
+        <div class="invoice-title">
 
-            <div class="col-md-6">
+            <span>
+                INVOICE
+            </span>
 
-                <h5>Customer Details</h5>
-
-                <p>
-                    <strong>Name:</strong> {{ order.full_name }}
-                </p>
-
-                <p>
-                    <strong>Phone:</strong> {{ order.phone }}
-                </p>
-
-                <p>
-                    <strong>Email:</strong> {{ order.email }}
-                </p>
-
-                <p>
-                    <strong>Address:</strong> {{ order.address }}
-                </p>
-
-            </div>
-
-            <div class="col-md-6 text-md-end">
-
-                <h5>Order Details</h5>
-
-                <p>
-                    <strong>Order ID:</strong> #{{ order.id }}
-                </p>
-
-                <p>
-                    <strong>Date:</strong> {{ order.created_at }}
-                </p>
-
-                <p>
-                    <strong>Payment Method:</strong> {{ order.payment_method }}
-                </p>
-
-                <p>
-                    <strong>Payment Status:</strong> {{ order.payment_status }}
-                </p>
-
-                <p>
-                    <strong>Order Status:</strong> {{ order.status }}
-                </p>
-
-            </div>
-
-        </div>
-
-        <hr>
-
-        <table class="table table-bordered">
-
-            <thead class="table-dark">
-
-                <tr>
-
-                    <th>Product</th>
-
-                    <th>Quantity</th>
-
-                    <th>Price</th>
-
-                    <th>Subtotal</th>
-
-                </tr>
-
-            </thead>
-
-            <tbody>
-
-                {% for item in order_items %}
-
-                <tr>
-
-                    <td>{{ item.product.name }}</td>
-
-                    <td>{{ item.quantity }}</td>
-
-                    <td>Rs. {{ item.price }}</td>
-
-                    <td>Rs. {{ item.subtotal }}</td>
-
-                </tr>
-
-                {% endfor %}
-
-            </tbody>
-
-        </table>
-
-        <div class="text-end">
-
-            <h4>
-
-                Total: Rs. {{ order.total_amount }}
-
-            </h4>
+            <strong>
+                #{{ order.id }}
+            </strong>
 
         </div>
 
     </div>
 
-    <div class="text-center mt-4">
 
-        <button onclick="window.print()" class="btn btn-primary">
+    <div class="invoice-divider"></div>
 
-            Print Invoice
 
-        </button>
+    <!-- Customer & Order Details -->
+
+    <div class="invoice-details">
+
+        <div class="invoice-detail-box">
+
+            <span class="invoice-detail-label">
+                BILLED TO
+            </span>
+
+            <h5>
+                {{ order.full_name }}
+            </h5>
+
+            <p>
+                <i class="bi bi-telephone"></i>
+                {{ order.phone }}
+            </p>
+
+            <p>
+                <i class="bi bi-envelope"></i>
+                {{ order.email }}
+            </p>
+
+            <p>
+                <i class="bi bi-geo-alt"></i>
+                {{ order.address }}
+            </p>
+
+        </div>
+
+
+        <div class="invoice-detail-box invoice-order-details">
+
+            <span class="invoice-detail-label">
+                ORDER DETAILS
+            </span>
+
+            <div>
+                <span>Order ID</span>
+                <strong>#{{ order.id }}</strong>
+            </div>
+
+            <div>
+                <span>Date</span>
+                <strong>{{ order.created_at }}</strong>
+            </div>
+
+            <div>
+                <span>Payment</span>
+                <strong>{{ order.payment_method }}</strong>
+            </div>
+
+            <div>
+                <span>Payment Status</span>
+                <strong>{{ order.payment_status }}</strong>
+            </div>
+
+            <div>
+                <span>Order Status</span>
+                <strong>{{ order.status }}</strong>
+            </div>
+
+        </div>
 
     </div>
+
+
+    <!-- Products -->
+
+    <div class="invoice-items">
+
+        <div class="invoice-table-title">
+            Order Items
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="table invoice-table">
+
+                <thead>
+
+                    <tr>
+                        <th>Product</th>
+                        <th class="text-center">Quantity</th>
+                        <th class="text-end">Price</th>
+                        <th class="text-end">Subtotal</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for item in order_items %}
+
+                    <tr>
+
+                        <td>
+                            <strong>
+                                {{ item.product.name }}
+                            </strong>
+                        </td>
+
+                        <td class="text-center">
+                            {{ item.quantity }}
+                        </td>
+
+                        <td class="text-end">
+                            Rs. {{ item.price }}
+                        </td>
+
+                        <td class="text-end">
+                            <strong>
+                                Rs. {{ item.subtotal }}
+                            </strong>
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+    <!-- Total -->
+
+    <div class="invoice-total-section">
+
+        <div class="invoice-total">
+
+            <span>
+                Total Amount
+            </span>
+
+            <strong>
+                Rs. {{ order.total_amount }}
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <!-- Footer -->
+
+    <div class="invoice-footer">
+
+        <div>
+
+            <strong>
+                Thank you for shopping with Royal Nepal!
+            </strong>
+
+            <p>
+                We appreciate your business.
+            </p>
+
+        </div>
+
+        <i class="bi bi-heart-fill"></i>
+
+    </div>
+
+</div>
+
+
+<!-- Print Button -->
+
+<div class="invoice-actions">
+
+    <button
+        onclick="window.print()"
+        class="btn invoice-print-btn">
+
+        <i class="bi bi-printer me-2"></i>
+
+        Print Invoice
+
+    </button>
+
+</div>
+```
 
 </div>
 

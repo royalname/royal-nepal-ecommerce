@@ -83,23 +83,32 @@ def payment(request, order_id):
     if request.method == "POST":
 
         payment_method = request.POST.get("payment_method")
-
-        print("Payment Method:", payment_method)
+        payment_screenshot = request.FILES.get("payment_screenshot")
 
         if not payment_method:
-            messages.error(request, "Please select a payment method.")
+            messages.error(
+                request,
+                "Please select a payment method."
+            )
+            return redirect("payment", order_id=order.id)
+
+        if not payment_screenshot:
+            messages.error(
+                request,
+                "Please upload your payment screenshot."
+            )
             return redirect("payment", order_id=order.id)
 
         order.payment_method = payment_method
-
-        if "payment_screenshot" in request.FILES:
-            order.payment_screenshot = request.FILES["payment_screenshot"]
-
+        order.payment_screenshot = payment_screenshot
         order.payment_status = "Pending Verification"
 
         order.save()
 
-        return redirect("payment_success", order.id)
+        return redirect(
+            "payment_success",
+            order_id=order.id
+        )
 
     return render(
         request,
@@ -144,13 +153,18 @@ def payment_success(request, order_id):
 @login_required
 def order_success(request, order_id):
 
-    order = get_object_or_404(Order, id=order_id)
+    order = get_object_or_404(
+        Order,
+        id=order_id,
+        user=request.user
+    )
 
     return render(
         request,
         "orders/order_success.html",
         {
-            "order": order
+            "order": order,
+            "payment_screenshot": order.payment_screenshot,
         }
     )
 
