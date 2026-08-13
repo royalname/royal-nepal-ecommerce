@@ -4670,33 +4670,20 @@ font-size: 0.7rem;
 
 .profile-update-btn {
 width: 100%;
-
-
 margin-top: 5px;
 padding: 12px;
-
 border: none;
 border-radius: 10px;
-
 background: #198754;
 color: #ffffff;
-
 font-weight: 750;
-
 transition: all 0.2s ease;
-
-
 }
 
 .profile-update-btn:hover {
 background: #157347;
-
-
 color: #ffffff;
-
 transform: translateY(-1px);
-
-
 }
 
 /* Account Actions */
@@ -4704,69 +4691,41 @@ transform: translateY(-1px);
 .profile-actions {
 display: flex;
 flex-direction: column;
-
-
 gap: 10px;
-
 margin-top: 30px;
 padding-top: 25px;
-
 border-top: 1px solid #edf0f2;
-
-
 }
 
 .profile-action {
 display: flex;
 align-items: center;
-
-
 gap: 13px;
-
 padding: 13px;
-
 border: 1px solid #edf0f2;
 border-radius: 12px;
-
 color: #343a40;
-
 text-decoration: none;
-
 transition: all 0.2s ease;
-
-
 }
 
 .profile-action:hover {
 border-color: #cfe2ff;
-
-
 background: #f8fbff;
-
 color: #0d6efd;
-
 transform: translateX(2px);
-
-
 }
 
 .profile-action-icon {
 width: 40px;
 height: 40px;
-
-
 display: flex;
 align-items: center;
 justify-content: center;
-
 flex-shrink: 0;
-
 border-radius: 10px;
-
 background: #eef5ff;
 color: #0d6efd;
-
-
 }
 
 .profile-action > div:nth-child(2) {
@@ -4775,33 +4734,20 @@ flex: 1;
 
 .profile-action strong {
 display: block;
-
-
 font-size: 0.82rem;
-
-
 }
 
 .profile-action small {
 display: block;
 
-
 margin-top: 2px;
-
 color: #8a8f98;
-
 font-size: 0.7rem;
-
-
 }
 
 .action-arrow {
 color: #adb5bd;
-
-
 font-size: 0.75rem;
-
-
 }
 
 .password-action .profile-action-icon {
@@ -4836,8 +4782,6 @@ color: #856404;
 .profile-body {
     padding: 24px 20px;
 }
-
-
 }
 
 
