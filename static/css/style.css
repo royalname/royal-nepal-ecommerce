@@ -4630,11 +4630,7 @@ font-size: 0.86rem;
 
 .profile-input-wrapper .form-control:focus {
 border-color: #86b7fe;
-
-
 box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.1);
-
-
 }
 
 .profile-input-wrapper .form-control[readonly] {
@@ -4644,13 +4640,8 @@ background: #f8f9fa;
 .field-locked {
 position: absolute;
 right: 14px;
-
-
 color: #adb5bd;
-
 font-size: 0.75rem;
-
-
 }
 
 .profile-field small {
