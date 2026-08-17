@@ -4615,17 +4615,11 @@ color: #6c757d;
 
 .profile-input-wrapper .form-control {
 min-height: 46px;
-
-
 padding-left: 42px;
 padding-right: 42px;
-
 border: 1px solid #dee2e6;
 border-radius: 10px;
-
 font-size: 0.86rem;
-
-
 }
 
 .profile-input-wrapper .form-control:focus {
