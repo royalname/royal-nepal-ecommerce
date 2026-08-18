@@ -4593,12 +4593,8 @@ font-weight: 750;
 
 .profile-input-wrapper {
 position: relative;
-
-
 display: flex;
 align-items: center;
-
-
 }
 
 .profile-input-wrapper > i {
