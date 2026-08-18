@@ -4604,13 +4604,8 @@ align-items: center;
 .profile-input-wrapper > i {
 position: absolute;
 left: 14px;
-
-
 z-index: 2;
-
 color: #6c757d;
-
-
 }
 
 .profile-input-wrapper .form-control {
