@@ -4432,16 +4432,12 @@ color: #ffffff;
 /* Print */
 
 @media print {
-
     body {
         background: #ffffff !important;
     }
-
      .royal-footer {
         display: none !important;
     }
-
-
     .invoice-page {
         padding: 0 !important;
     }
@@ -4449,7 +4445,6 @@ color: #ffffff;
     .invoice-card {
         max-width: none;
         padding: 20px;
-
         border: none;
         box-shadow: none;
     }
@@ -4458,7 +4453,6 @@ color: #ffffff;
     .invoice-footer {
         display: none !important;
     }
-
 }
 
 /* =========================================================
@@ -4467,27 +4461,16 @@ PROFILE PAGE
 
 .profile-page {
 max-width: 850px;
-
-
 margin: 0 auto;
-
 padding: 45px 15px 75px;
-
-
 }
 
 .profile-card {
 overflow: hidden;
-
-
 border: 1px solid #e9ecef;
 border-radius: 20px;
-
 background: #ffffff;
-
 box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
-
-
 }
 
 /* Header */
@@ -4495,12 +4478,8 @@ box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
 .profile-header {
 display: flex;
 align-items: center;
-
-
 gap: 18px;
-
 padding: 30px;
-
 background: linear-gradient(
     135deg,
     #0d6efd,
@@ -4508,37 +4487,24 @@ background: linear-gradient(
 );
 
 color: #ffffff;
-
-
 }
 
 .profile-avatar {
 width: 68px;
 height: 68px;
-
-
 display: flex;
 align-items: center;
 justify-content: center;
-
 flex-shrink: 0;
-
 border-radius: 50%;
-
 background: rgba(255, 255, 255, 0.18);
-
 font-size: 2rem;
-
-
 }
 
 .profile-label {
 font-size: 0.65rem;
 font-weight: 800;
-
-
 letter-spacing: 1.3px;
-
 opacity: 0.8;
 
 
