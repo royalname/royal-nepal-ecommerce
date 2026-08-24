@@ -4232,50 +4232,29 @@ margin-top: 10px;
 
 .invoice-table-title {
 margin-bottom: 12px;
-
-
 font-size: 1rem;
 font-weight: 800;
-
-
 }
 
 .invoice-table {
 margin-bottom: 0;
-
-
 vertical-align: middle;
-
-
 }
 
 .invoice-table thead th {
 padding: 13px 14px;
-
-
 border-bottom: 2px solid #dee2e6;
-
 background: #f8f9fa;
-
 color: #495057;
-
 font-size: 0.73rem;
-
 text-transform: uppercase;
 letter-spacing: 0.4px;
-
-
 }
 
 .invoice-table tbody td {
 padding: 15px 14px;
-
-
 border-bottom: 1px solid #edf0f2;
-
 font-size: 0.84rem;
-
-
 }
 
 .invoice-table tbody tr:last-child td {
@@ -4287,44 +4266,25 @@ border-bottom: none;
 .invoice-total-section {
 display: flex;
 justify-content: flex-end;
-
-
 margin-top: 20px;
-
-
 }
 
 .invoice-total {
 min-width: 300px;
-
-
 padding: 18px 20px;
-
 border-radius: 12px;
-
 background: #f8f9fa;
-
-
 }
 
 .invoice-total span {
 color: #6c757d;
-
-
 font-size: 0.82rem;
-
-
 }
 
 .invoice-total strong {
 float: right;
-
-
 color: #198754;
-
 font-size: 1.2rem;
-
-
 }
 
 /* Footer */
@@ -4333,14 +4293,9 @@ font-size: 1.2rem;
 display: flex;
 align-items: center;
 justify-content: space-between;
-
-
 margin-top: 35px;
 padding-top: 20px;
-
-border-top: 1px solid #e9ecef;
-
-
+border-top: 1px solid #e9ecef
 }
 
 .invoice-footer strong {
@@ -4349,40 +4304,25 @@ font-size: 0.82rem;
 
 .invoice-footer p {
 margin: 4px 0 0;
-
-
 color: #8a8f98;
-
 font-size: 0.75rem;
-
-
 }
-
 .invoice-footer > i {
 color: #dc3545;
 }
-
 /* Print Button */
 
 .invoice-actions {
 display: flex;
 justify-content: center;
-
-
 margin-top: 25px;
-
-
 }
 
 .invoice-print-btn {
 padding: 11px 24px;
-
-
 border-radius: 10px;
-
 background: #0d6efd;
 color: #ffffff;
-
 font-weight: 700;
 
 
@@ -4425,8 +4365,6 @@ color: #ffffff;
 .invoice-total {
     min-width: 100%;
 }
-
-
 }
 
 /* Print */
