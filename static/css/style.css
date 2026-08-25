@@ -3804,18 +3804,11 @@ font-size: 1rem !important;
 .order-status {
 display: inline-flex;
 align-items: center;
-
-
 gap: 5px;
-
 padding: 5px 9px;
-
 border-radius: 20px;
-
 font-size: 0.7rem !important;
 font-weight: 700;
-
-
 }
 
 .payment-pending,
