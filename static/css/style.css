@@ -3904,41 +3904,26 @@ color: #ffffff;
 
 .empty-orders {
 max-width: 600px;
-
-
 margin: 50px auto;
 padding: 50px 30px;
-
 border: 1px solid #e9ecef;
 border-radius: 18px;
-
 background: #ffffff;
-
 text-align: center;
-
 box-shadow: 0 8px 28px rgba(0, 0, 0, 0.05);
-
-
 }
 
 .empty-orders-icon {
 width: 70px;
 height: 70px;
-
 display: flex;
 align-items: center;
 justify-content: center;
-
 margin: 0 auto 18px;
-
 border-radius: 50%;
-
 background: #f0f6ff;
 color: #0d6efd;
-
 font-size: 2rem;
-
-
 }
 
 .empty-orders h3 {
