@@ -3952,20 +3952,14 @@ font-weight: 800;
 
 .empty-orders p {
 max-width: 430px;
-
-
 margin: 0 auto 22px;
-
 color: #6c757d;
 line-height: 1.6;
-
-
 }
 
 /* Mobile */
 
 @media (max-width: 768px) {
-
 
 .my-orders-page {
     padding-top: 30px;
@@ -3998,7 +3992,6 @@ line-height: 1.6;
 
 @media (max-width: 576px) {
 
-
 .order-info-grid {
     grid-template-columns: 1fr;
 }
@@ -4012,8 +4005,6 @@ line-height: 1.6;
 .order-date {
     font-size: 0.72rem;
 }
-
-
 }
 
 /* =========================================================
@@ -4027,20 +4018,12 @@ padding-bottom: 70px;
 
 .invoice-card {
 max-width: 1000px;
-
-
 margin: 0 auto;
-
 padding: 40px;
-
 background: #ffffff;
-
 border: 1px solid #e9ecef;
 border-radius: 18px;
-
 box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
-
-
 }
 
 /* Header */
