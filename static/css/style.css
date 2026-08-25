@@ -3770,19 +3770,12 @@ border-right: none;
 
 .order-info-item > span {
 display: block;
-
-
 margin-bottom: 7px;
-
 color: #8a8f98;
-
 font-size: 0.68rem;
 font-weight: 700;
-
 text-transform: uppercase;
 letter-spacing: 0.4px;
-
-
 }
 
 .order-info-item strong {
