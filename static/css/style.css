@@ -3670,18 +3670,11 @@ gap: 18px;
 
 .order-card {
 overflow: hidden;
-
-
 border: 1px solid #e9ecef;
 border-radius: 17px;
-
 background: #ffffff;
-
 box-shadow: 0 7px 25px rgba(0, 0, 0, 0.05);
-
 transition: all 0.2s ease;
-
-
 }
 
 .order-card:hover {
@@ -3695,43 +3688,26 @@ transform: translateY(-2px);
 display: flex;
 align-items: center;
 justify-content: space-between;
-
-
 padding: 20px 22px;
-
 border-bottom: 1px solid #edf0f2;
-
-
 }
 
 .order-label {
 color: #8a8f98;
-
-
 font-size: 0.68rem;
 font-weight: 800;
 letter-spacing: 1px;
-
-
 }
 
 .order-card-header h4 {
 margin: 3px 0 0;
-
-
 font-size: 1.15rem;
 font-weight: 800;
-
-
 }
 
 .order-date {
 color: #6c757d;
-
-
 font-size: 0.78rem;
-
-
 }
 
 .order-date i {
@@ -3743,20 +3719,12 @@ margin-right: 5px;
 .order-info-grid {
 display: grid;
 grid-template-columns: repeat(4, 1fr);
-
-
 padding: 22px;
-
-
 }
 
 .order-info-item {
 padding: 0 18px;
-
-
 border-right: 1px solid #edf0f2;
-
-
 }
 
 .order-info-item:first-child {
