@@ -3497,19 +3497,14 @@ color: #198754;
 
 .payment-status-box strong {
     display: block;
-
     color: #664d03;
-
     font-size: 0.85rem;
 }
 
 .payment-status-box span {
     display: block;
-
     margin-top: 2px;
-
     color: #997404;
-
     font-size: 0.78rem;
 }
 
