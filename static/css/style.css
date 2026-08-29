@@ -3160,25 +3160,15 @@ line-height: 1.7;
 .success-order-details {
 display: grid;
 grid-template-columns: 1fr 1fr;
-
-
 margin: 30px 0;
-
 border: 1px solid #e9ecef;
 border-radius: 14px;
-
 overflow: hidden;
-
-
 }
 
 .success-detail {
 padding: 18px;
-
-
 background: #f8f9fa;
-
-
 }
 
 .success-detail + .success-detail {
@@ -3187,18 +3177,12 @@ border-left: 1px solid #e9ecef;
 
 .success-detail span {
 display: block;
-
-
 margin-bottom: 5px;
-
 color: #8a8f98;
-
 font-size: 0.72rem;
 font-weight: 700;
 text-transform: uppercase;
 letter-spacing: 0.5px;
-
-
 }
 
 .success-detail strong {
