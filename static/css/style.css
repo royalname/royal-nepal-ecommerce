@@ -1,7 +1,7 @@
 html,
 body {
 margin: 0 !important;
-padding: 0 !important;
+padding: 0 ;
 }
 
 .royal-navbar {
@@ -50,6 +50,7 @@ background-color: #f8f9fa;
 color: #212529;
 font-family: Arial, Helvetica, sans-serif;
 line-height: 1.6;
+padding-top: 74px; /* Adjust for fixed navbar height */
 }
 
 /* ================================
@@ -81,6 +82,7 @@ MAIN CONTENT
 
 .container {
 max-width: 1200px;
+
 }
 
 /* ================================
